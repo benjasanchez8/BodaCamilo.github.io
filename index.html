@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Boda - Luisa & Camilo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Sevillana&display=swap" rel="stylesheet" />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: "Dancing Script", cursive;
+        background-color: #f8f9fa;
+      }
+
+      header {
+        background-image: url("https://raw.githubusercontent.com/luisapachon09/invitacionboda.github.io/main/images/img_bg_2.JPG");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        height: 100vh;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      header h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      header h2 {
+        font-size: 1.8rem;
+        color: white;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+      }
+
+      .header-content {
+        z-index: 2;
+      }
+
+      .simply-countdown {
+        margin-top: 20px;
+      }
+
+      .btn {
+        background-color: #87c18c;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+
+      /* Estilos para música */
+      .music-control {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 100;
+      }
+
+      .music-control button {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+      }
+
+      .music-control i {
+        font-size: 24px;
+      }
+
+      /* Sección de bienvenida */
+      .welcome-section {
+        text-align: center;
+        padding: 50px 20px;
+        background-color: #f8f9fa;
+      }
+
+      .welcome-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+      }
+
+      .photos-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .photo {
+        width: 45%;
+        max-width: 400px;
+        margin: 10px;
+      }
+
+      .photo img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Sección de eventos */
+      .event-section {
+        background-color: #87c18c;
+        color: white;
+        /* padding: 50px 0; */
+        text-align: center;
+      }
+
+      .event-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+      }
+
+      .event-wrap {
+        display: flex;
+        justify-content: center; /* Cambiado a center para centrar las tarjetas */
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .event {
+        background-color: white;
+        color: #87c18c;
+        padding: 20px;
+        margin: 10px;
+        width: 300px; /* Valor por defecto para pantallas más grandes */
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+      }
+
+      /* Ajustes para pantallas pequeñas */
+      @media (max-width: 600px) {
+        .event {
+          width: 90%; /* Ajusta el ancho a un 90% en pantallas pequeñas */
+          max-width: 350px; /* Establece un ancho máximo */
+          margin: 10px auto; /* Centra las tarjetas en el contenedor */
+        }
+      }
+
+      .event h3 {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+      }
+
+      .event .event-col {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      .event .btn {
+        background-color: #87c18c;
+        color: white;
+      }
+
+      /* Estilos adicionales */
+      @media screen and (max-width: 768px) {
+        header h1 {
+          font-size: 2.5rem;
+        }
+        @media (max-width: 768px) {
+          .event-box {
+            margin-right: 10px; /* Añade margen derecho */
+            margin-left: 10px; /* Añade margen izquierdo */
+            padding: 20px; /* Ajusta el padding si es necesario */
+          }
+        }
+
+        header h2 {
+          font-size: 1.5rem;
+        }
+
+        .event-wrap {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .event {
+          width: 90%;
+        }
+
+        .photo {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Música de fondo y control -->
+    <div class="music-control">
+      <button id="music-button" onclick="toggleMusic()">
+        <i id="music-icon" class="fa fa-play"></i>
+      </button>
+    </div>
+
+    <audio id="background-music" autoplay loop>
+      <source src="music/song.mp3" type="audio/mpeg" />
+      Tu navegador no soporta la etiqueta de audio.
+    </audio>
+
+    <!-- Header -->
+    <header>
+      <div class="overlay"></div>
+      <div class="header-content">
+        <h1>Nos Casamos!</h1>
+        <h1>Luisa & Camilo</h1>
+        <!-- <h2>21 de Diciembre, 2024 - Manizales, Colombia</h2> -->
+        <div class="simply-countdown simply-countdown-one"></div>
+        <!-- <p><a href="#" class="btn">Guarda esta fecha</a></p> -->
+        <!-- Sección de guardar la fecha -->
+        <div id="fh5co-save-date" class="fh5co-bg" style="padding: 60px 0">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-8 text-center fh5co-heading animate-box">
+                <h2 style="color: #87c18c; font-size: 36px; margin-bottom: 10px">¡Guarda esta fecha!</h2>
+                <h3 style="color: #87c18c; font-size: 28px; margin-bottom: 5px">Diciembre 21, 2024</h3>
+                <h2 style="color: #87c18c; font-size: 36px; margin-bottom: 10px">Faltan:</h2>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-md-8 text-center">
+                <div id="countdown" style="font-size: 24px; color: #87c18c; margin-top: 20px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          // Establecer la fecha de la boda
+          const weddingDate = new Date("December 21, 2024 00:00:00").getTime();
+
+          // Actualizar el conteo regresivo cada segundo
+          const x = setInterval(function () {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            // Cálculos de tiempo
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Mostrar el resultado en el elemento con id="countdown"
+            document.getElementById("countdown").innerHTML = `${days} días ${hours} horas ${minutes} minutos ${seconds} segundos`;
+
+            // Si la cuenta regresiva ha terminado, mostrar un mensaje
+            if (distance < 0) {
+              clearInterval(x);
+              document.getElementById("countdown").innerHTML = "¡Es el gran día!";
+            }
+          }, 1000);
+        </script>
+      </div>
+    </header>
+    <!-- Sección de bienvenida -->
+    <div id="fh5co-started" class="fh5co-bg" style="background-image: url('https://raw.githubusercontent.com/luisapachon09/invitacionboda.github.io/main/images/.jpg'); background-size: cover; background-position: center; padding: 60px 0" data-stellar-background-ratio="0.5">
+      <div class="overlay" style="background: rgba(0, 0, 0, 0.5)"></div>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 text-center fh5co-heading animate-box" style="display: flex; flex-direction: column; align-items: center">
+            <h2 style="color: #87c18c; font-size: 36px; margin-bottom: 10px">¡Hola!</h2>
+            <!-- <h3 style="color: #87c18c; font-size: 28px; margin-bottom: 5px">Diciembre 21, 2024 | Manizales, Colombia</h3> -->
+            <h3 style="color: #87c18c; font-size: 28px">Te invitamos a celebrar nuestra boda.</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="couple-wrap animate-box" style="display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 30px">
+        <div class="couple-half" style="flex: 1; max-width: 40%; text-align: center; margin: 10px">
+          <div class="groom">
+            <img src="images/groom.jpg" alt="groom" class="img-responsive" style="max-width: 60%; border-radius: 50%; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3)" />
+          </div>
+          <div class="desc-bride" style="padding-top: 10px; color: #000000">
+            <h3 style="font-size: 24px">Luisa Fernanda Pachón Arias</h3>
+            <p style="font-size: 20px">Agradecemos a todos los que han formado parte de nuestra historia. ¡Nos llena de felicidad contar con su presencia en nuestro gran día!</p>
+          </div>
+        </div>
+
+        <div class="couple-half" style="flex: 1; max-width: 40%; text-align: center; margin: 10px">
+          <div class="bride">
+            <img src="images/bride.jpg" alt="bride" class="img-responsive" style="max-width: 60%; border-radius: 50%; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3)" />
+          </div>
+          <div class="desc-bride" style="padding-top: 10px; color: #000000">
+            <h3 style="font-size: 24px">Juan Camilo Alvarado Llano</h3>
+            <p style="font-size: 20px">Su amor y apoyo son un regalo invaluable en nuestras vidas, y no hay manera de imaginar este día tan especial sin ustedes a nuestro lado.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Eventos -->
+    <section class="event-section">
+      <h2>Eventos de la Boda</h2>
+      <div class="event-wrap">
+        <div class="event">
+          <h3>Eucaristía</h3>
+          <div class="event-col">
+            <i class="fa fa-clock"></i>
+            <span>5:00 PM - 6:00 PM</span>
+          </div>
+          <div class="event-col">
+            <i class="fa fa-calendar"></i>
+            <span>21 Diciembre, 2024</span>
+          </div>
+          <p>Parroquia Nuestra Señora de Los Dolores</p>
+          <p>Manizales - Caldas</p>
+          <a href="https://maps.app.goo.gl/jvvKZsMzo18JwTem7" target="_blank" class="btn">Ubicación</a>
+        </div>
+        <div class="event">
+          <h3>Recepción</h3>
+          <div class="event-col">
+            <i class="fa fa-clock"></i>
+            <span>6:00 PM - 02:00 AM</span>
+          </div>
+          <div class="event-col">
+            <i class="fa fa-calendar"></i>
+            <span>21 Diciembre, 2024</span>
+          </div>
+          <p>Restaurante El Peñol</p>
+          <a href="https://maps.app.goo.gl/kbaYH26dGpBdQJsc9" target="_blank" class="btn">Ubicación</a>
+        </div>
+        <div class="event">
+          <h3>Información</h3>
+          <p>
+            <i class="fas fa-suit"></i> <u><strong>Código de Vestimenta</strong></u>
+          </p>
+          <p><strong>Traje formal</strong></p>
+          <p>
+            <strong><u>Mujeres</u>: Se reserva el color blanco para la novia.</strong>
+          </p>
+          <p>
+            <i class="fas fa-suit"></i> <u><strong>Sugerencia de Regalo</strong></u>
+          </p>
+          <p>Tu presencia es nuestro mejor regalo, pero si deseas hacernos un obsequio te agradeceríamos que fuera:</p>
+          <p><i class="fas fa-envelope"></i> <strong>Lluvia de Sobres</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Confirmación -->
+    <div id="fh5co-confirmation" class="fh5co-bg" style="background-image: url('images/img_bg_6.jpg'); background-size: cover; background-position: center">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row animate-box">
+          <div class="col-md-8 col-md-offset-2 text-center fh5co-heading" style="text-align: center">
+            <h2 style="color: #87c18c; font-size: 48px">¿Estarás Asistiendo?</h2>
+            <p style="color: #000000; font-size: 24px">Por favor diligencia la información antes del 1 de Diciembre solo de los invitados que asistirán a la recepción. Gracias.</p>
+          </div>
+        </div>
+
+        <div class="row animate-box">
+          <div class="col-md-10 col-md-offset-1">
+            <form action="https://docs.google.com/forms/d/16rZBucXk9ycrANk1fTVgAxgIT56kT7TZ7J-qn0XKt2Y/formResponse" method="post" target="_self" style="background-color: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name1" class="sr-only">Invitado 1</label>
+                    <input type="text" class="form-control" name="entry.1302475252" id="name1" placeholder="Invitado 1" required style="font-family: 'Dancing Script', cursive; padding: 15px; font-size: 20px; border: 2px solid #87c18c; border-radius: 5px; width: 95%" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="telefono1" class="sr-only">Teléfono</label>
+                    <input type="text" class="form-control" name="entry.1667145050" id="telefono1" placeholder="Teléfono" required style="font-family: 'Dancing Script', cursive; padding: 15px; font-size: 20px; border: 2px solid #87c18c; border-radius: 5px; width: 95%" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name2" class="sr-only">Invitado 2</label>
+                    <input type="text" class="form-control" name="entry.265916969" id="name2" placeholder="Invitado 2" required style="font-family: 'Dancing Script', cursive; padding: 15px; font-size: 20px; border: 2px solid #87c18c; border-radius: 5px; width: 95%" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="telefono2" class="sr-only">Teléfono</label>
+                    <input type="text" class="form-control" name="entry.1073541195" id="telefono2" placeholder="Teléfono" required style="font-family: 'Dancing Script', cursive; padding: 15px; font-size: 20px; border: 2px solid #87c18c; border-radius: 5px; width: 95%" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name3" class="sr-only">Invitado 3</label>
+                    <input type="text" class="form-control" name="entry.849602375" id="name3" placeholder="Invitado 3" required style="font-family: 'Dancing Script', cursive; padding: 15px; font-size: 20px; border: 2px solid #87c18c; border-radius: 5px; width: 95%" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="telefono3" class="sr-only">Teléfono</label>
+                    <input type="text" class="form-control" name="entry.702776684" id="telefono3" placeholder="Teléfono" required style="font-family: 'Dancing Script', cursive; padding: 15px; font-size: 20px; border: 2px solid #87c18c; border-radius: 5px; width: 95%" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name4" class="sr-only">Invitado 4</label>
+                    <input type="text" class="form-control" name="entry.516918100" id="name4" placeholder="Invitado 4" required style="font-family: 'Dancing Script', cursive; padding: 15px; font-size: 20px; border: 2px solid #87c18c; border-radius: 5px; width: 95%" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="telefono4" class="sr-only">Teléfono</label>
+                    <input type="text" class="form-control" name="entry.1580213073" id="telefono4" placeholder="Teléfono" required style="font-family: 'Dancing Script', cursive; padding: 15px; font-size: 20px; border: 2px solid #87c18c; border-radius: 5px; width: 95%" />
+                  </div>
+                </div>
+              </div>
+              <div class="button-container text-center" style="margin-top: 20px; display: flex; justify-content: center">
+                <button type="submit" class="btn btn-default" style="background-color: #87c18c; font-family: 'Dancing Script', cursive; font-size: 24px; padding: 15px 30px; border: none; border-radius: 5px">Confirmación</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- Scripts -->
+<script>
+  var audio = document.getElementById("background-music");
+  var musicButton = document.getElementById("music-button");
+  var musicIcon = document.getElementById("music-icon");
+
+  function toggleMusic() {
+    if (audio.paused) {
+      audio.play();
+      musicIcon.classList.remove("fa-play");
+      musicIcon.classList.add("fa-pause");
+    } else {
+      audio.pause();
+      musicIcon.classList.remove("fa-pause");
+      musicIcon.classList.add("fa-play");
+    }
+  }
+
+  window.onload = function () {
+    audio.play().catch(function () {
+      musicIcon.classList.add("fa-play");
+      document.body.addEventListener(
+        "click",
+        function () {
+          audio.play();
+          musicIcon.classList.add("fa-pause");
+        },
+        { once: true }
+      );
+    });
+  };
+</script>
