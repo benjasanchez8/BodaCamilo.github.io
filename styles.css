@@ -258,13 +258,14 @@ header h2 {
   padding: 20px; /* Espaciado interno */
 }
 .carousel {
-  width: 100%;
-  margin: 0 auto;
+  width: 90%; /* Ajusta el ancho del carrusel */
+  margin: 0 auto; /* Centrar el carrusel */
 }
 
 .carousel img {
-  width: 100%; /* Las imágenes ocupan el ancho completo */
-  height: auto;
+  width: 80%; /* Cambia el tamaño de las imágenes */
+  height: auto; /* Mantener la proporción */
+  margin: 0 auto; /* Centrar las imágenes */
 }
 
 .music-control {

@@ -61,19 +61,30 @@ $(document).ready(function () {
     slidesToShow: 3, // Mostrar 3 fotos en pantallas grandes
     slidesToScroll: 1,
     dots: true,
+    adaptiveHeight: true, // Ajustar la altura del carrusel
     responsive: [
-      {
-        breakpoint: 768, // Para pantallas pequeñas
-        settings: {
-          slidesToShow: 1, // Mostrar 1 foto en pantallas pequeñas
-          slidesToScroll: 1,
-        },
-      },
       {
         breakpoint: 1024, // Para pantallas medianas
         settings: {
           slidesToShow: 2, // Mostrar 2 fotos en pantallas medianas
           slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768, // Para pantallas pequeñas
+        settings: {
+          slidesToShow: 1, // Mostrar 1 foto en pantallas pequeñas
+          slidesToScroll: 1,
+          dots: true, // Mostrar puntos de navegación
+        },
+      },
+      {
+        breakpoint: 480, // Para pantallas muy pequeñas
+        settings: {
+          slidesToShow: 1, // Asegurarse de mostrar solo 1 foto
+          slidesToScroll: 1,
+          centerMode: true, // Centrar la imagen activa
+          centerPadding: "40px", // Agregar espacio a los lados
         },
       },
     ],
