@@ -54,25 +54,29 @@ window.onload = function () {
       document.getElementById("countdown").innerHTML = "¡Es el gran día!";
     }
   }, 1000);
-
-  let currentSlide = 0;
-
-  function showSlide(index) {
-    const slides = document.querySelectorAll(".carousel-images img");
-    const totalSlides = Math.ceil(slides.length / 4); // Dividir el total por 4 (4 imágenes por pantalla)
-
-    if (index >= totalSlides) currentSlide = 0; // Si se llega al final, volver al inicio
-    if (index < 0) currentSlide = totalSlides - 1; // Si se retrocede desde el principio, ir al último grupo
-
-    const offset = -currentSlide * 100; // Mover el contenedor del carrusel
-    document.querySelector(".carousel-images").style.transform = `translateX(${offset}%)`;
-  }
-
-  function moveSlide(direction) {
-    currentSlide += direction;
-    showSlide(currentSlide);
-  }
-
-  // Mostrar el primer slide al cargar
-  showSlide(currentSlide);
 };
+let currentIndex = 0; // Índice de la primera imagen visible
+const images = document.querySelectorAll(".carousel-images img");
+const totalImages = images.length;
+const imagesToShow = 3; // Mostrar solo 3 imágenes
+
+function updateCarousel() {
+  const offset = -currentIndex * (150 + 10); // 150 es el ancho de la imagen + 10 de margen
+  document.querySelector(".carousel-images").style.transform = `translateX(${offset}px)`;
+}
+
+function moveSlide(direction) {
+  currentIndex += direction;
+
+  // Asegúrate de que el índice esté dentro de los límites
+  if (currentIndex < 0) {
+    currentIndex = 0; // No permite ir más allá del inicio
+  } else if (currentIndex >= totalImages - imagesToShow + 1) {
+    currentIndex = totalImages - imagesToShow; // No permite ir más allá del final
+  }
+
+  updateCarousel();
+}
+
+// Inicializa el carrusel y oculta imágenes no visibles
+updateCarousel();

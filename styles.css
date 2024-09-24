@@ -257,50 +257,52 @@ header h2 {
   border-radius: 10px; /* Bordes redondeados */
   padding: 20px; /* Espaciado interno */
 }
-
 .photo-carousel {
+  width: 100%;
   text-align: center;
-  margin: 50px 0;
+  position: relative;
+  margin: 0 auto; /* Centra el contenedor */
 }
 
 .carousel {
-  position: relative;
-  max-width: 1200px; /* Ajustar el ancho total del carrusel */
-  margin: auto;
-  overflow: hidden;
-  border-radius: 10px;
-}
-.carousel button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-  border: none;
-  color: white;
-  font-size: 24px;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  overflow: hidden; /* Oculta las imágenes fuera del área visible */
 }
 
 .carousel-images {
   display: flex;
   transition: transform 0.5s ease;
+  width: calc(150px * 8 + 70px); /* Ancho total de las 8 imágenes más márgenes */
 }
 
 .carousel-images img {
-  width: 25%; /* Muestra 4 imágenes por pantalla */
-  height: auto;
+  width: 150px; /* Tamaño de las imágenes */
+  height: auto; /* Mantiene la proporción */
+  margin: 0 5px; /* Espacio entre imágenes */
+  display: block; /* Asegúrate de que las imágenes sean bloqueadas */
 }
 
-.prev {
+button.carousel {
+  background-color: rgba(255, 255, 255, 0.7); /* Color de fondo semi-transparente */
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+button.prev {
   left: 10px;
 }
 
-.next {
+button.next {
   right: 10px;
 }
+
 .music-control {
   position: fixed;
   bottom: 20px;
