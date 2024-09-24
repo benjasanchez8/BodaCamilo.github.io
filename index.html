@@ -57,6 +57,20 @@
       .simply-countdown {
         margin-top: 20px;
       }
+      .countdown-timer {
+        font-size: 24px;
+        color: #fff; /* Change text color */
+        background-color: #87c18c; /* Countdown background color */
+        border-radius: 10px; /* Rounded corners */
+        padding: 20px; /* Padding for space inside */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        display: inline-block; /* Centering effect */
+        transition: transform 0.3s; /* Smooth hover effect */
+    }
+
+    .countdown-timer:hover {
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
 
       .btn {
         background-color: #87c18c;
@@ -122,6 +136,34 @@
       }
 
       /* Sección de eventos */
+      .event-section h2 {
+    font-size: 32px; /* Tamaño del título de la sección */
+    color: #87c18c; /* Color del título */
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.event h3 {
+    font-size: 28px; /* Tamaño de la letra para los subtítulos de eventos */
+    color: #333; /* Color de los subtítulos */
+    margin-bottom: 10px; /* Espacio debajo de los subtítulos */
+}
+
+.event p {
+    font-size: 20px; /* Tamaño de la letra para las descripciones */
+    color: #555; /* Color de las descripciones */
+    margin-bottom: 10px; /* Espacio debajo de los párrafos */
+}
+
+.event-col {
+    font-size: 18px; /* Tamaño de la letra para los detalles de tiempo y fecha */
+    color: #666; /* Color de los detalles */
+}
+
+.btn {
+    font-size: 18px; /* Tamaño de la letra para los botones */
+    padding: 10px 15px; /* Padding para los botones */
+}
+
       .event-section {
         background-color: #87c18c;
         color: white;
@@ -228,17 +270,18 @@
       <div class="header-content">
         <h1>Nos Casamos!</h1>
         <h1>Luisa & Camilo</h1>
-        <!-- <h2>21 de Diciembre, 2024 - Manizales, Colombia</h2> -->
-        <div class="simply-countdown simply-countdown-one"></div>
-        <!-- <p><a href="#" class="btn">Guarda esta fecha</a></p> -->
-        <!-- Sección de guardar la fecha -->
         <div id="fh5co-save-date" class="fh5co-bg" style="padding: 60px 0">
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-md-8 text-center fh5co-heading animate-box">
-                <h2 style="color: #87c18c; font-size: 36px; margin-bottom: 10px">¡Guarda esta fechaaaaaa!</h2>
+                <h2 style="color: #87c18c; font-size: 36px; margin-bottom: 10px">¡Guarda esta fecha!</h2>
                 <h3 style="color: #87c18c; font-size: 28px; margin-bottom: 5px">Diciembre 21, 2024</h3>
                 <h2 style="color: #87c18c; font-size: 36px; margin-bottom: 10px">Faltan:</h2>
+                <div class="row justify-content-center">
+                  <div class="col-md-8 text-center">
+                      <div id="countdown" class="countdown-timer"></div>
+                  </div>
+              </div>
               </div>
             </div>
             <div class="row justify-content-center">
@@ -248,42 +291,13 @@
             </div>
           </div>
         </div>
-
-        <script>
-          // Establecer la fecha de la boda
-          const weddingDate = new Date("December 21, 2024 00:00:00").getTime();
-
-          // Actualizar el conteo regresivo cada segundo
-          const x = setInterval(function () {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            // Cálculos de tiempo
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Mostrar el resultado en el elemento con id="countdown"
-            document.getElementById("countdown").innerHTML = `${days} días ${hours} horas ${minutes} minutos ${seconds} segundos`;
-
-            // Si la cuenta regresiva ha terminado, mostrar un mensaje
-            if (distance < 0) {
-              clearInterval(x);
-              document.getElementById("countdown").innerHTML = "¡Es el gran día!";
-            }
-          }, 1000);
-        </script>
       </div>
     </header>
     <!-- Sección de bienvenida -->
-    <div id="fh5co-started" class="fh5co-bg" style="background-image: url('https://raw.githubusercontent.com/luisapachon09/invitacionboda.github.io/main/images/.jpg'); background-size: cover; background-position: center; padding: 60px 0" data-stellar-background-ratio="0.5">
-      <div class="overlay" style="background: rgba(0, 0, 0, 0.5)"></div>
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 text-center fh5co-heading animate-box" style="display: flex; flex-direction: column; align-items: center">
             <h2 style="color: #87c18c; font-size: 36px; margin-bottom: 10px">¡Hola!</h2>
-            <!-- <h3 style="color: #87c18c; font-size: 28px; margin-bottom: 5px">Diciembre 21, 2024 | Manizales, Colombia</h3> -->
             <h3 style="color: #87c18c; font-size: 28px">Te invitamos a celebrar nuestra boda.</h3>
           </div>
         </div>
@@ -312,54 +326,55 @@
       </div>
     </div>
 
-    <!-- Sección de Eventos -->
-    <section class="event-section">
-      <h2>Eventos de la Boda</h2>
-      <div class="event-wrap">
-        <div class="event">
+   <!-- Sección de Eventos -->
+<section class="event-section">
+  <h2>Eventos de la Boda</h2>
+  <div class="event-wrap">
+      <div class="event">
           <h3>Eucaristía</h3>
           <div class="event-col">
-            <i class="fa fa-clock"></i>
-            <span>5:00 PM - 6:00 PM</span>
+              <i class="fa fa-clock"></i>
+              <span>5:00 PM - 6:00 PM</span>
           </div>
           <div class="event-col">
-            <i class="fa fa-calendar"></i>
-            <span>21 Diciembre, 2024</span>
+              <i class="fa fa-calendar"></i>
+              <span>21 Diciembre, 2024</span>
           </div>
           <p>Parroquia Nuestra Señora de Los Dolores</p>
           <p>Manizales - Caldas</p>
           <a href="https://maps.app.goo.gl/jvvKZsMzo18JwTem7" target="_blank" class="btn">Ubicación</a>
-        </div>
-        <div class="event">
+      </div>
+      <div class="event">
           <h3>Recepción</h3>
           <div class="event-col">
-            <i class="fa fa-clock"></i>
-            <span>6:00 PM - 02:00 AM</span>
+              <i class="fa fa-clock"></i>
+              <span>6:00 PM - 02:00 AM</span>
           </div>
           <div class="event-col">
-            <i class="fa fa-calendar"></i>
-            <span>21 Diciembre, 2024</span>
+              <i class="fa fa-calendar"></i>
+              <span>21 Diciembre, 2024</span>
           </div>
           <p>Restaurante El Peñol</p>
           <a href="https://maps.app.goo.gl/kbaYH26dGpBdQJsc9" target="_blank" class="btn">Ubicación</a>
-        </div>
-        <div class="event">
+      </div>
+      <div class="event">
           <h3>Información</h3>
           <p>
-            <i class="fas fa-suit"></i> <u><strong>Código de Vestimenta</strong></u>
+              <i class="fas fa-suit"></i> <u><strong>Código de Vestimenta</strong></u>
           </p>
           <p><strong>Traje formal</strong></p>
           <p>
-            <strong><u>Mujeres</u>: Se reserva el color blanco para la novia.</strong>
+              <strong><u>Mujeres</u>: Se reserva el color blanco para la novia.</strong>
           </p>
           <p>
-            <i class="fas fa-suit"></i> <u><strong>Sugerencia de Regalo</strong></u>
+              <i class="fas fa-suit"></i> <u><strong>Sugerencia de Regalo</strong></u>
           </p>
           <p>Tu presencia es nuestro mejor regalo, pero si deseas hacernos un obsequio te agradeceríamos que fuera:</p>
           <p><i class="fas fa-envelope"></i> <strong>Lluvia de Sobres</strong></p>
-        </div>
       </div>
-    </section>
+  </div>
+</section>
+
 
     <!-- Confirmación -->
     <div id="fh5co-confirmation" class="fh5co-bg" style="background-image: url('images/img_bg_6.jpg'); background-size: cover; background-position: center">
@@ -473,4 +488,29 @@
       );
     });
   };
+</script>
+<script>
+  // Set the wedding date
+  const weddingDate = new Date("December 21, 2024 00:00:00").getTime();
+
+  // Update the countdown every second
+  const x = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      // Time calculations
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the result in the element with id="countdown"
+      document.getElementById("countdown").innerHTML = `${days} días ${hours} horas ${minutes} minutos ${seconds} segundos`;
+
+      // If the countdown is over, display a message
+      if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("countdown").innerHTML = "¡Es el gran día!";
+      }
+  }, 1000);
 </script>
