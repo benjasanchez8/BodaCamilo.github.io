@@ -257,50 +257,25 @@ header h2 {
   border-radius: 10px; /* Bordes redondeados */
   padding: 20px; /* Espaciado interno */
 }
-.photo-carousel {
-  width: 100%;
-  text-align: center;
-  position: relative;
-  margin: 0 auto; /* Centra el contenedor */
-}
-
 .carousel {
   display: flex;
-  align-items: center;
-  justify-content: center; /* Centra el contenido horizontalmente */
-  overflow: hidden; /* Oculta las imágenes fuera del área visible */
+  overflow: hidden;
+  width: 100%;
 }
 
-.carousel-images {
+.carousel-inner {
   display: flex;
   transition: transform 0.5s ease;
-  width: calc(150px * 8 + 70px); /* Ancho total de las 8 imágenes más márgenes */
 }
 
-.carousel-images img {
-  width: 150px; /* Tamaño de las imágenes */
-  height: auto; /* Mantiene la proporción */
-  margin: 0 5px; /* Espacio entre imágenes */
-  display: block; /* Asegúrate de que las imágenes sean bloqueadas */
+.carousel-item {
+  min-width: 33.33%; /* Mostrar 3 fotos a la vez */
 }
 
-button.carousel {
-  background-color: rgba(255, 255, 255, 0.7); /* Color de fondo semi-transparente */
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-}
-
-button.prev {
-  left: 10px;
-}
-
-button.next {
-  right: 10px;
+img {
+  width: 50%; /* Tamaño de las fotos, ajusta el porcentaje según lo necesites */
+  height: auto;
+  margin: 0 auto; /* Centrar las imágenes */
 }
 
 .music-control {

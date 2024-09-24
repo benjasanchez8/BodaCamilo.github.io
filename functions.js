@@ -55,28 +55,20 @@ window.onload = function () {
     }
   }, 1000);
 };
-let currentIndex = 0; // Índice de la primera imagen visible
-const images = document.querySelectorAll(".carousel-images img");
-const totalImages = images.length;
-const imagesToShow = 3; // Mostrar solo 3 imágenes
+let currentIndex = 0;
+const items = document.querySelectorAll(".carousel-item");
 
-function updateCarousel() {
-  const offset = -currentIndex * (150 + 10); // 150 es el ancho de la imagen + 10 de margen
-  document.querySelector(".carousel-images").style.transform = `translateX(${offset}px)`;
+function showItems() {
+  items.forEach((item, index) => {
+    item.style.display = index >= currentIndex && index < currentIndex + 3 ? "block" : "none";
+  });
 }
 
-function moveSlide(direction) {
-  currentIndex += direction;
-
-  // Asegúrate de que el índice esté dentro de los límites
-  if (currentIndex < 0) {
-    currentIndex = 0; // No permite ir más allá del inicio
-  } else if (currentIndex >= totalImages - imagesToShow + 1) {
-    currentIndex = totalImages - imagesToShow; // No permite ir más allá del final
-  }
-
-  updateCarousel();
+function nextItem() {
+  currentIndex = (currentIndex + 1) % items.length;
+  showItems();
 }
 
-// Inicializa el carrusel y oculta imágenes no visibles
-updateCarousel();
+// Inicializar
+showItems();
+setInterval(nextItem, 3000); // Cambiar cada 3 segundos
