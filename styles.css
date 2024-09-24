@@ -258,24 +258,13 @@ header h2 {
   padding: 20px; /* Espaciado interno */
 }
 .carousel {
-  display: flex;
-  overflow: hidden;
   width: 100%;
+  margin: 0 auto;
 }
 
-.carousel-inner {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.carousel-item {
-  min-width: 33.33%; /* Mostrar 3 fotos a la vez */
-}
-
-img {
-  width: 50%; /* Tamaño de las fotos, ajusta el porcentaje según lo necesites */
+.carousel img {
+  width: 100%; /* Las imágenes ocupan el ancho completo */
   height: auto;
-  margin: 0 auto; /* Centrar las imágenes */
 }
 
 .music-control {

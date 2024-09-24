@@ -55,20 +55,27 @@ window.onload = function () {
     }
   }, 1000);
 };
-let currentIndex = 0;
-const items = document.querySelectorAll(".carousel-item");
 
-function showItems() {
-  items.forEach((item, index) => {
-    item.style.display = index >= currentIndex && index < currentIndex + 3 ? "block" : "none";
+$(document).ready(function () {
+  $(".carousel").slick({
+    slidesToShow: 3, // Mostrar 3 fotos en pantallas grandes
+    slidesToScroll: 1,
+    dots: true,
+    responsive: [
+      {
+        breakpoint: 768, // Para pantallas pequeñas
+        settings: {
+          slidesToShow: 1, // Mostrar 1 foto en pantallas pequeñas
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1024, // Para pantallas medianas
+        settings: {
+          slidesToShow: 2, // Mostrar 2 fotos en pantallas medianas
+          slidesToScroll: 1,
+        },
+      },
+    ],
   });
-}
-
-function nextItem() {
-  currentIndex = (currentIndex + 1) % items.length;
-  showItems();
-}
-
-// Inicializar
-showItems();
-setInterval(nextItem, 3000); // Cambiar cada 3 segundos
+});
