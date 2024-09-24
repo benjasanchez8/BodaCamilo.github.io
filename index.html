@@ -267,6 +267,51 @@
         border-radius: 10px; /* Bordes redondeados */
         padding: 20px; /* Espaciado interno */
       }
+
+      .photo-carousel {
+        text-align: center;
+        margin: 50px 0;
+      }
+
+      .carousel {
+        position: relative;
+        max-width: 1200px; /* Ajustar el ancho total del carrusel */
+        margin: auto;
+        overflow: hidden;
+        border-radius: 10px;
+      }
+
+      .carousel-images {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+
+      .carousel-images img {
+        width: 25%; /* Muestra 4 imágenes por pantalla */
+        height: auto;
+      }
+
+      button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+        border: none;
+        color: white;
+        font-size: 24px;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        z-index: 10;
+      }
+
+      .prev {
+        left: 10px;
+      }
+
+      .next {
+        right: 10px;
+      }
     </style>
   </head>
   <body>
@@ -393,6 +438,24 @@
         </div>
       </div>
     </section>
+    <!-- Sección de fotos -->
+    <div class="photo-carousel">
+      <h2>Nuestras Fotos</h2>
+      <div class="carousel">
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <div class="carousel-images">
+          <img src="./images/IMG_0507.jpg" alt="Foto 1" />
+          <img src="./images/IMG_0715.jpg" alt="Foto 2" />
+          <img src="./images/IMG_1253.jpg" alt="Foto 3" />
+          <img src="./images/IMG_1293.jpg" alt="Foto 4" />
+          <img src="./images/IMG_1322.jpg" alt="Foto 5" />
+          <img src="./images/IMG_1672.jpg" alt="Foto 6" />
+          <img src="./images/IMG_1718.jpg" alt="Foto 7" />
+          <img src="./images/IMG_1943.jpg" alt="Foto 8" />
+        </div>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+      </div>
+    </div>
 
     <!-- Confirmación -->
     <div id="fh5co-confirmation" class="fh5co-bg" style="background-image: url('images/img_bg_6.jpg'); background-size: cover; background-position: center">
@@ -531,4 +594,26 @@
       document.getElementById("countdown").innerHTML = "¡Es el gran día!";
     }
   }, 1000);
+</script>
+<script>
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    const slides = document.querySelectorAll(".carousel-images img");
+    const totalSlides = Math.ceil(slides.length / 4); // Dividir el total por 4 (4 imágenes por pantalla)
+
+    if (index >= totalSlides) currentSlide = 0; // Si se llega al final, volver al inicio
+    if (index < 0) currentSlide = totalSlides - 1; // Si se retrocede desde el principio, ir al último grupo
+
+    const offset = -currentSlide * 100; // Mover el contenedor del carrusel
+    document.querySelector(".carousel-images").style.transform = `translateX(${offset}%)`;
+  }
+
+  function moveSlide(direction) {
+    currentSlide += direction;
+    showSlide(currentSlide);
+  }
+
+  // Mostrar el primer slide al cargar
+  showSlide(currentSlide);
 </script>
